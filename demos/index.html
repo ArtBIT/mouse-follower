@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="assets/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+        <title>Mouse Follower Demo</title>
+        <meta property="og:title" content="Control User Cursor">
+
+        <meta name="description" content="Mouse Follower toy">
+        <meta property="og:description" content="Mouse Follower toy">
+
+        <style type='text/css'>
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                Mouse Follower Demo
+            </div>
+            <div class="description">
+                A simple toy that follows the mouse on screen.
+            </div>
+            <div class="buttons"></div>
+        </header> 
+        <main></main>
+        <script src="../dist/mousefollower.js"></script>
+        <script type="text/javascript">
+            var main = document.getElementsByTagName('main')[0];
+            var header = document.getElementsByTagName('header')[0];
+
+            var createElement = function(type, attrs) {
+                var elem = document.createElement(type);
+                attrs = attrs || {};
+                for (var a in attrs) {
+                    if (attrs.hasOwnProperty(a)) {
+                        switch (a) {
+                            case 'data':
+                                for (var d in attrs[a]) {
+                                    if (attrs[a].hasOwnProperty(d)) {
+                                        elem.setAttribute('data-'+d, attrs[a][d]);
+                                    }
+                                }
+                                break;
+                            case 'style':
+                                for (var s in attrs[a]) {
+                                    if (attrs[a].hasOwnProperty(s)) {
+                                        elem.style[s] = attrs[a][s];
+                                    }
+                                }
+                                break;
+                            case 'className':
+                            case 'innerHTML':
+                                elem[a] = attrs[a];
+                                break;
+
+                            default:
+                                elem.setAttribute(a, attrs[a]);
+                        }
+                    }
+                }
+                return elem;
+            }
+
+            var calc = function(a, b) {
+                b = Math.round(b);
+                b = (Math.sign(b) < 0 ? '-' : '+') + ' ' + Math.abs(b) + 'px';
+                return 'calc(' + a + ' ' + b + ')';
+            }
+
+            var createDemo = function(label, demoStartCallback) {
+                var buttons = header.querySelector('.buttons');
+                var demoName = label.toLowerCase();
+                var button = createElement('div', {
+                    className: 'button',
+                    innerHTML: label,
+                    data: {
+                        name: demoName
+                    }
+                });
+                button.addEventListener('click', function() {
+                    main.innerHTML = '';
+
+                    // Make all the siblings innactive
+                    var sibling = this.parentNode.firstChild;
+                    while (sibling) {
+                        if (sibling.nodeType == 1) {
+                            sibling.classList.remove('active');
+                        }
+                        sibling = sibling.nextSibling;
+                    } 
+                    // make the current button active
+                    this.classList.add('active');
+
+                    demoStartCallback();
+                    history.pushState(demoName, 'Mouse Follower Demo: ' + label, '?'+demoName);
+                });
+                buttons.appendChild(button);
+            };
+
+            var follower = new MouseFollower({followStrategy: 'wobble'});
+            follower.show();
+
+            var setFollowerOptionsTartan = function() {
+                follower.setOptions({
+                    backgroundImage: '/demos/assets/ghost_body_tartan.gif',
+                    followStrategy: 'basic'
+                });
+            };
+            var setFollowerOptions13 = function() {
+                follower.setOptions({
+                    backgroundImage: '/demos/assets/ghost_body_13.gif',
+                    followStrategy: 'basic',
+                    spring: 50
+                });
+            };
+            var setFollowerOptionsBat = function() {
+                follower.setOptions({
+                    backgroundImage: '/demos/assets/bat.gif',
+                    followStrategy: 'wobble',
+                    eyes: false
+                });
+            };
+            var setFollowerOptionsBoo = function() {
+                follower.setOptions({
+                    backgroundImage: '/demos/assets/ghost.png',
+                    followStrategy: 'wobble',
+                    eyes: false,
+                    width: 64,
+                    height: 64,
+                    xflip: true
+                });
+            };
+
+            var onPopState = function(e) {
+                var demo = e.state;
+                var button = header.querySelector('.buttons .button[data-name='+demo+']');
+                if (!button) {
+                    button = header.querySelector('.buttons .button');
+                }
+                if (button) {
+                    button.click();
+                }
+            };
+
+            var showDemos = function() {
+                createDemo('Basic', setFollowerOptionsTartan);
+                createDemo('Bat', setFollowerOptionsBat);
+                createDemo('Ghost13', setFollowerOptions13);
+                createDemo('Boo', setFollowerOptionsBoo);
+                window.addEventListener('popstate', onPopState);
+                onPopState({state: window.location.search.split('?').pop() || 'circle'});
+            };
+
+            var init = function() {
+                showDemos();
+            }
+            init();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "mouse-follower",
+  "version": "1.0.0",
+  "description": "Create an avatar that follows the mouse cursor on the page.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "serve": "http-server -p 9090 .",
+    "demo": "open http://localhost:9090/demos/",
+    "start": "npm run build && npm run demo && npm run serve -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtBIT/mouse-follower.git"
+  },
+  "keywords": [
+    "mouse",
+    "cursor",
+    "follower",
+    "toy"
+  ],
+  "author": "Djordje Ungar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArtBIT/mouse-follower/issues"
+  },
+  "homepage": "https://github.com/ArtBIT/mouse-follower#readme",
+  "dependencies": {
+    "raf": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.1",
+    "babel-preset-es2015": "^6.22.0",
+    "http-server": "^0.9.0",
+    "open": "0.0.5",
+    "webpack": "^2.2.1"
+  }
+}
