@@ -3,17 +3,9 @@ body {
     height: auto;
     width: 100vw;
     font-family: sans-serif;
-    background-color: #ecf0f1;
+    background-color: #111;
     margin: 0;
     padding: 0;
-}
-
-a {
-    color: #2980b9;
-}
-
-a:hover {
-    color: #3498db;
 }
 
 header {
@@ -60,4 +52,17 @@ header .description {
     background-color: #fff;
     font-weight: 500;
 }
+
+body,
+header .title,
+a, a:visited {
+    color: #DADADA;
+}
+
+.button.active,
+.button:hover,
+a:hover {
+    color: #333;
+}
+
 
