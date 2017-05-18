@@ -162,7 +162,7 @@ export default class MouseFollower {
     setOptions(options) {
         options = options || {};
         let defaultOptions = {
-            backgroundImage:'/demos/assets/ghost_body_tartan.gif',
+            backgroundImage:'assets/ghost_body_tartan.gif',
             followStrategy: 'basic',
             width: 50,
             height: 50,
@@ -175,7 +175,7 @@ export default class MouseFollower {
             xflip: false,
             yflip: false,
             eyes: {
-                backgroundImage:'/demos/assets/ghost_eyes.gif',
+                backgroundImage:'assets/ghost_eyes.gif',
                 width:12,
                 height:16,
                 radius: 5,
