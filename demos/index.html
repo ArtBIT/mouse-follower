@@ -105,9 +105,8 @@
             var follower = new MouseFollower({followStrategy: 'wobble'});
             follower.show();
 
-            var setFollowerOptionsTartan = function() {
+            var setFollowerOptionsBasic = function() {
                 follower.setOptions({
-                    backgroundImage: 'assets/ghost_body_tartan.gif',
                     followStrategy: 'basic'
                 });
             };
@@ -116,6 +115,13 @@
                     backgroundImage: 'assets/ghost_body_13.gif',
                     followStrategy: 'basic',
                     spring: 50
+                });
+            };
+            var setFollowerOptionsTartan = function() {
+                follower.setOptions({
+                    backgroundImage: 'assets/ghost_body_tartan.gif',
+                    followStrategy: 'wobble',
+                    spring: 80
                 });
             };
             var setFollowerOptionsBat = function() {
@@ -148,9 +154,10 @@
             };
 
             var showDemos = function() {
-                createDemo('Basic', setFollowerOptionsTartan);
+                createDemo('Basic', setFollowerOptionsBasic);
                 createDemo('Bat', setFollowerOptionsBat);
                 createDemo('Ghost13', setFollowerOptions13);
+                createDemo('McGhost', setFollowerOptionsTartan);
                 createDemo('Boo', setFollowerOptionsBoo);
                 window.addEventListener('popstate', onPopState);
                 onPopState({state: window.location.search.split('?').pop() || 'circle'});

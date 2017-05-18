@@ -237,7 +237,7 @@ class MouseFollower {
     setOptions(options) {
         options = options || {};
         let defaultOptions = {
-            backgroundImage: 'assets/ghost_body_tartan.gif',
+            backgroundImage: 'assets/ghost_body.gif',
             followStrategy: 'basic',
             width: 50,
             height: 50,
