@@ -4,7 +4,7 @@ This is a small experiment that creates a little avatar that follows mouse curso
 
 Try the live demo [here](https://artbit.github.io/mouse-follower/demos/).
 
-[![mouse-follower](demos/demo.gif?1)](http://github.com/artbit/mouse-follower/)
+[![mouse-follower](demos/assets/demo.gif)](http://github.com/artbit/mouse-follower/)
 
 ## Usage
 ```js
