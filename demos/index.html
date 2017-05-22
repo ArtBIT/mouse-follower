@@ -19,13 +19,16 @@
     </head>
     <body>
         <header>
-            <div class="title">
-                Mouse Follower Demo
+            <div class="row">
+                <h1 class="title">
+                    <a class="github-link" href="https://github.com/artbit/mouse-follower"></a>
+                    Mouse Follower Demo
+                </h1>
+                <nav class="demos"></nav>
             </div>
-            <div class="description">
-                A simple toy that follows the mouse on screen.
+            <div class="row">
+                <p class="info">A simple toy that follows the mouse on screen.</p>
             </div>
-            <div class="buttons"></div>
         </header> 
         <main></main>
         <script src="../dist/mousefollower.js"></script>
@@ -73,16 +76,17 @@
             }
 
             var createDemo = function(label, demoStartCallback) {
-                var buttons = header.querySelector('.buttons');
+                var demos = header.querySelector('.demos');
                 var demoName = label.toLowerCase();
-                var button = createElement('div', {
-                    className: 'button',
+                var demo = createElement('a', {
+                    className: 'demo',
+                    href: 'javascript:void(0)',
                     innerHTML: label,
                     data: {
                         name: demoName
                     }
                 });
-                button.addEventListener('click', function() {
+                demo.addEventListener('click', function() {
                     main.innerHTML = '';
 
                     // Make all the siblings innactive
@@ -93,13 +97,13 @@
                         }
                         sibling = sibling.nextSibling;
                     } 
-                    // make the current button active
+                    // make the current demo active
                     this.classList.add('active');
 
                     demoStartCallback();
                     history.pushState(demoName, 'Mouse Follower Demo: ' + label, '?'+demoName);
                 });
-                buttons.appendChild(button);
+                demos.appendChild(demo);
             };
 
             var follower = new MouseFollower({followStrategy: 'wobble'});
@@ -144,12 +148,12 @@
 
             var onPopState = function(e) {
                 var demo = e.state;
-                var button = header.querySelector('.buttons .button[data-name='+demo+']');
-                if (!button) {
-                    button = header.querySelector('.buttons .button');
+                var demo = header.querySelector('.demos .demo[data-name='+demo+']');
+                if (!demo) {
+                    demo = header.querySelector('.demos .demo');
                 }
-                if (button) {
-                    button.click();
+                if (demo) {
+                    demo.click();
                 }
             };
 
