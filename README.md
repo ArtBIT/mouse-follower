@@ -1,3 +1,5 @@
+[![GitHub stars](https://img.shields.io/github/stars/ArtBIT/mouse-follower.svg)](https://github.com/ArtBIT/mouse-follower) [![GitHub license](https://img.shields.io/github/license/ArtBIT/mouse-follower.svg)](https://github.com/ArtBIT/mouse-follower) [![GitHub issues](https://img.shields.io/github/issues/ArtBIT/mouse-follower.svg)](https://github.com/ArtBIT/mouse-follower/issues)
+
 # Mouse Follower
 
 This is a small experiment that creates a little avatar that follows mouse cursor on the page.
